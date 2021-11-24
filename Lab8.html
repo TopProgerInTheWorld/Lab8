@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport">
+	<title>Document</title>
+	<script>
+		var canvas;
+		var ctx;
+		var myColor = "Красный";
+
+		function init() {
+			canvas = document.getElementById('canvas');
+			ctx = canvas.getContext('2d');
+			document.addEventListener("mousedown", putRect);
+			document.addEventListener("keydown", putRect);
+			ctx.strokeStyle = 'black';
+			ctx.fillStyle = 'red';
+			ctx.strokeRect(0, 0, 640, 480);
+						document.getElementById("myColor").value = "x=" + myColor;
+		}
+
+		function putRect(event){
+			var x = event.offsetX;
+			var y = event.offsetY;
+			ctx.fillRect(x,y,20,20);
+			 if (event.keyCode == 49) { selectColor('red') }
+			 if (event.keyCode == 50) { selectColor('blue') }
+			 if (event.keyCode == 51) { selectColor('green') }
+		}
+
+		function selectColor(color) {
+			if (color == "red") {
+				ctx.fillStyle = "red";
+				myColor = "Красный";
+			}
+			else if (color == "green") {
+				ctx.fillStyle = "green";
+				myColor = "Зеленый";
+			}
+			else {
+				ctx.fillStyle = "blue";
+				myColor = "Синий";
+			}
+			document.getElementById("myColor").value = "x=" + myColor;
+		}
+
+
+	</script>
+</head>
+
+<body onload="init();">
+	<canvas id="canvas" width="640" height="480"></canvas>
+		<input type="text" id="myColor"></input>
+
+</body>
+
+</html>
